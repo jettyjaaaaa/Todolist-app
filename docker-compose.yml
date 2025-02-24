@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: todo
+
+  backend:
+    build:
+      context: ./backend 
+    container_name: backend
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      MONGO_URI: mongodb://mongodb:27017/todo
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: ./frontend 
+    container_name: frontend
+    restart: always
+    ports:
+      - "5173:5173" 
+    depends_on:
+      - backend
+
+volumes:
+  mongodb_data:
+    driver: local
