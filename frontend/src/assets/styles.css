@@ -1,3 +1,5 @@
+
+
 /* ✅ General Body Styles */
 body {
   font-family: "Poppins", sans-serif;
@@ -29,6 +31,7 @@ body {
   justify-content: space-between;
   gap: 15px;
   padding: 20px;
+  flex-wrap: wrap;
 }
 
 .task-column {
@@ -37,9 +40,10 @@ body {
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  height: 500px;  /* Fixed height */
+  height: 100%;  /* Fixed height */
+  max-height: 900px;
   overflow-y: auto;  /* Enable scrolling */
-  position: relative;
+  position: relative;  
 }
 
 /* ✅ Sticky Navbar Inside Each Box */
@@ -47,7 +51,8 @@ body {
   position: sticky;
   top: 0;
   background: white;
-  padding: 10px;
+  padding: 2%;
+  padding-top: -10px;
   border-bottom: 2px solid #ddd;
   font-size: 18px;
   font-weight: bold;
@@ -119,9 +124,10 @@ input, textarea {
 
 /* ✅ Update Button (Green) */
 .update-btn {
-  background: #28a745; /* Green */
+  background: #28a745;
   color: white;
   padding: 10px;
+  margin-right: 1%;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -129,12 +135,12 @@ input, textarea {
 }
 
 .update-btn:hover {
-  background: #218838; /* Darker Green */
+  background: #218838;
 }
 
 /* ✅ Cancel Button (Red) */
 .cancel-btn {
-  background: #dc3545; /* Red */
+  background: #dc3545;
   color: white;
   padding: 10px;
   border: none;
@@ -190,9 +196,13 @@ input, textarea {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
+  max-width: 500px; 
+  width: 100%;
   margin: auto;
+  margin-top: 2%;
   text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .todo-form-container h2 {
@@ -218,16 +228,19 @@ input, textarea {
   color: #555;
 }
 
-input, textarea, select {
+.todo-form input,
+.todo-form textarea,
+.todo-form select {
   width: 100%;
   padding: 10px;
   font-size: 14px;
   border: 1px solid #ddd;
   border-radius: 5px;
   outline: none;
+  box-sizing: border-box;
 }
 
-textarea {
+.todo-form textarea {
   min-height: 80px;
   resize: vertical;
 }
@@ -262,17 +275,67 @@ textarea {
   gap: 5px;
 }
 
-/* .menu-options button {
-  padding: 8px 10px;
-  cursor: pointer;
-  font-size: 14px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  transition: background 0.3s;
+/* ✅ Add Task Button Styling */
+.add-btn {
+  background: #28a745;
   color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background 0.3s, transform 0.2s;
+  display: block;
+  width: 100%;
+  max-width: 200px; 
+  margin: 15px auto;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
-.menu-options button:hover {
-  background: #f4f4f4;
-} */
+/* ✅ Hover effect */
+.add-btn:hover {
+  background: #218838;
+  transform: scale(1.05);
+}
+
+/* ✅ Active button effect */
+.add-btn:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 1024px) {
+
+  .task-columns {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .task-column {
+    width: 80%; 
+    max-height: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .task-column {
+    width: 100%; 
+  }
+
+  .todo-form-container {
+    width: 95%;
+    max-width: 400px; 
+  }
+
+  .add-btn {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .todo-form-container {
+    width: 80%;
+    border-radius: 8%; 
+  }
+}
