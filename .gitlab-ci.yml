@@ -1,0 +1,26 @@
+stages:
+  - deploy
+
+variables:
+  VM_HOST: "34.72.155.6"  # ✅ ใส่ External IP ของ VM
+  SSH_USER: "wishjet49"  # ✅ ใส่ชื่อผู้ใช้ของ VM
+  SSH_KEY: $SSH_PRIVATE_KEY
+
+before_script:
+  - apt-get update -y
+  - apt-get install -y ssh
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying to VM..."
+    - mkdir -p ~/.ssh
+    - echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh -o StrictHostKeyChecking=no $SSH_USER@$VM_HOST << 'EOF'
+        cd ~/todolist-app
+        git pull origin main
+        docker-compose down
+        docker system prune -af
+        docker-compose up --build -d
+      EOF
