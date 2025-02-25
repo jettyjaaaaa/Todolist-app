@@ -6,6 +6,15 @@ variables:
   SSH_USER: "wishjet49"
   VM_HOST: "34.72.155.6"
 
+before_script:
+  - 'which ssh-agent || (apt-get update -y && apt-get install openssh-client -y)'
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | sed 's/\\n/\n/g' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - ssh-keyscan -H $VM_HOST >> ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+
 deploy:
   stage: deploy
   before_script:
