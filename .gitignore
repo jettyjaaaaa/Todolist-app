@@ -7,19 +7,12 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# ✅ Ignore dependencies
-backend/node_modules
-frontend/node_modules
+
 
 # ✅ Ignore build files
 dist/
 dist-ssr/
 build/
-
-# ✅ Ignore environment files (ไม่ควร push ขึ้น Git)
-.env
-frontend/.env
-backend/.env
 
 # ✅ Ignore Docker related files
 docker-compose.override.yml
