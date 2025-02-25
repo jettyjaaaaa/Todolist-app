@@ -7,13 +7,13 @@ variables:
   VM_HOST: "34.72.155.6"
   SSH_KEY: $SSH_PRIVATE_KEY # Set this in GitLab CI/CD variables
 
-build:
-  stage: build
-  script:
-    - echo "Building the project..."
-    - docker-compose build
-  only:
-    - main
+# build:
+#   stage: build
+#   script:
+#     - echo "Building the project..."
+#     - docker-compose build
+#   only:
+#     - main
 
 deploy:
   stage: deploy
