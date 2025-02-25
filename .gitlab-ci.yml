@@ -7,15 +7,6 @@ variables:
   VM_HOST: "34.72.155.6"
   SSH_KEY: $SSH_PRIVATE_KEY # Set this in GitLab CI/CD variables
 
-before_script:
-  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-  - eval $(ssh-agent -s)
-  - echo "$SSH_KEY" | tr -d '\r' | ssh-add -
-  - mkdir -p ~/.ssh
-  - chmod 700 ~/.ssh
-  - ssh-keyscan -H $VM_HOST >> ~/.ssh/known_hosts
-  - chmod 644 ~/.ssh/known_hosts
-
 build:
   stage: build
   script:
@@ -32,7 +23,6 @@ deploy:
       cd ~/todolist-app
       git pull origin main
       docker-compose down
-      docker system prune -af
       docker-compose up --build -d
       EOF
   only:
