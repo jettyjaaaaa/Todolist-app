@@ -8,8 +8,13 @@ const Todo = require("./models/Todo"); // Import Todo model
 
 const app = express();
 
+const corsOptions = {
+  origin: ["http://34.72.155.6", "https://jettyjaaaaa.space"], // Allow requests from your IP & domain
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // Allow sending cookies if needed
+};
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions)());
 app.use(bodyParser.json());
 
 // MongoDB Connection
