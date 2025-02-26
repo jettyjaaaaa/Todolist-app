@@ -13,6 +13,7 @@ RUN npm run build
 # ใช้ Alpine เพื่อลดขนาดของ container
 FROM alpine:latest
 WORKDIR /app
+RUN apk add --no-cache python3 py3-pip
 
 # คัดลอกไฟล์ที่ build เสร็จมาไว้ที่ /app
 COPY --from=build /app/dist /app
