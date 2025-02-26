@@ -14,6 +14,6 @@ deploy:
         sudo docker-compose down
         sudo docker-compose up --build -d
         sudo systemctl restart nginx
-    EOF
+      EOF
   only:
     - main
