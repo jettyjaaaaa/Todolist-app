@@ -17,7 +17,6 @@ RUN npm run build
 # Step 6: Use Nginx to serve the app
 FROM nginx:stable-alpine
 COPY --from=build /app/dist /usr/share/nginx/html/todolistapp
-COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 #Step 7 : Expose port and start Nginx
 EXPOSE 80

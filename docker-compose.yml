@@ -30,9 +30,7 @@ services:
     container_name: frontend
     restart: always
     ports:
-      - "8080:80" 
-    # environment:
-    #   - VITE_BASE_URL=/todolistapp
+      - "8080:3000" 
     depends_on:
       - backend
 
