@@ -8,7 +8,7 @@ deploy:
     - mkdir -p ~/.ssh
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
-    - ssh -o StrictHostKeyChecking=no wishjet49@34.72.155.6 << 'EOF'
+    - ssh -o StrictHostKeyChecking=no wishjet49@34.72.155.6 << EOF
         cd ~/todolist-app
         git pull origin main
         sudo docker-compose down
