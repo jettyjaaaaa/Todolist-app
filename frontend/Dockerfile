@@ -1,23 +1,22 @@
-# Step 1: Use a newer Node.js version that supports structuredClone
+# ใช้ Node.js สำหรับ Build React
 FROM node:18 AS build
-
-# Step 2: Set working directory
 WORKDIR /app
 
-# Step 3: Copy package files and install dependencies
+# คัดลอกไฟล์และติดตั้ง dependencies
 COPY package*.json ./
 RUN npm install
 
-# Step 4: Copy all source files
+# คัดลอก source code ทั้งหมด และ build frontend
 COPY . .
-
-# Step 5: Build the app
 RUN npm run build
 
-# Step 6: Use Nginx to serve the app
-FROM nginx:stable-alpine
-COPY --from=build /app/dist /usr/share/nginx/html/todolistapp
+# ใช้ Alpine เพื่อลดขนาดของ container
+FROM alpine:latest
+WORKDIR /app
 
-#Step 7 : Expose port and start Nginx
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# คัดลอกไฟล์ที่ build เสร็จมาไว้ที่ /app
+COPY --from=build /app/dist /app
+
+# ใช้ Python SimpleHTTPServer แทน Nginx
+CMD ["python3", "-m", "http.server", "8080"]
+EXPOSE 8080
