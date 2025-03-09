@@ -3,7 +3,7 @@ deploy:
   script:
     - echo "Deploying to VM..."
     - mkdir -p ~/.ssh
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
     - chmod 600 ~/.ssh/id_ed25519
     - |
       ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 wishjet49@34.57.1.13 << 'EOF'
