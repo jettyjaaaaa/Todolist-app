@@ -4,7 +4,7 @@ const TodoForm = ({ addTask }) => {
   const [task, setTask] = useState("");
   const [note, setNote] = useState("");
   const [dueDate, setDueDate] = useState("");
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!task || !dueDate) return;
@@ -33,14 +33,6 @@ const TodoForm = ({ addTask }) => {
           <label>Due Date</label>
           <input type="date" value={dueDate} min={new Date().toISOString().split("T")[0]} onChange={(e) => setDueDate(e.target.value)} required />
         </div>
-
-        {/* <div className="form-group">
-          <label>Status</label>
-          <select value={status} onChange={(e) => setStatus(e.target.value)}>
-            <option value="To Start">To Start</option>
-            <option value="In Progress">In Progress</option>
-          </select>
-        </div> */}
 
         <button className="add-btn" type="submit">Add Task</button>
       </form>

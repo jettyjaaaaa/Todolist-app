@@ -8,7 +8,6 @@ const Todo = require("./models/Todo");
 
 const app = express();
 
-// ✅ CORS - Make sure backend allows requests from your frontend
 app.use(cors({ 
   origin: "https://todolist.jettyjaaaaa.space",
   methods: "GET,POST,PUT,DELETE,OPTIONS",
@@ -17,14 +16,12 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-// ✅ Connect to MongoDB
 const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/todo";
 mongoose
   .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch((err) => console.error("❌ Failed to connect to MongoDB:", err));
 
-// ✅ GET All Todos (Changed Route: `/api/todos`)
 app.get("/api/todos", async (req, res) => {
   try {
     const todos = await Todo.find();
@@ -34,7 +31,6 @@ app.get("/api/todos", async (req, res) => {
   }
 });
 
-// ✅ GET Overdue Todos
 app.get("/api/todos/overdue", async (req, res) => {
   try {
     const today = new Date();
@@ -45,7 +41,6 @@ app.get("/api/todos/overdue", async (req, res) => {
   }
 });
 
-// ✅ POST - Create a New Todo (Removed duplicate)
 app.post("/api/todos", async (req, res) => {
   try {
     console.log("Request Body:", req.body); 
@@ -59,7 +54,6 @@ app.post("/api/todos", async (req, res) => {
   }
 });
 
-// ✅ PUT - Update a Todo
 app.put("/api/todos/:id", async (req, res) => {
   try {
     const { task, dueDate, note, status } = req.body;
@@ -78,7 +72,6 @@ app.put("/api/todos/:id", async (req, res) => {
   }
 });
 
-// ✅ DELETE - Remove a Todo
 app.delete("/api/todos/:id", async (req, res) => {
   try {
     const deletedTodo = await Todo.findByIdAndDelete(req.params.id);
@@ -90,6 +83,5 @@ app.delete("/api/todos/:id", async (req, res) => {
   }
 });
 
-// ✅ Start the Server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
