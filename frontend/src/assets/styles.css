@@ -1,6 +1,4 @@
-
-
-/* ✅ General Body Styles */
+/* General Body Styles */
 body {
   font-family: "Poppins", sans-serif;
   background: #f4f6f9;
@@ -9,7 +7,7 @@ body {
   padding: 0;
 }
 
-/* ✅ New Task Button */
+/* New Task Button */
 .new-task-btn {
   background: #007bff;
   color: white;
@@ -25,7 +23,7 @@ body {
   background: #0056b3;
 }
 
-/* ✅ Task Columns Layout */
+/* Task Columns Layout */
 .task-columns {
   display: flex;
   justify-content: space-between;
@@ -40,13 +38,13 @@ body {
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  height: 100%;  /* Fixed height */
+  height: 100%; 
   max-height: 900px;
-  overflow-y: auto;  /* Enable scrolling */
+  overflow-y: auto;  
   position: relative;  
 }
 
-/* ✅ Sticky Navbar Inside Each Box */
+/* Sticky Navbar Inside Each Box */
 .task-navbar {
   position: sticky;
   top: 0;
@@ -59,7 +57,7 @@ body {
   z-index: 10;
 }
 
-/* ✅ Task Cards */
+/* Task Cards */
 .task-card {
   background: white;
   padding: 15px;
@@ -69,7 +67,7 @@ body {
   position: relative;
 }
 
-/* ✅ Edit & Delete Buttons */
+/* Edit & Delete Buttons */
 .edit-btn {
   background: #ffc107;
   color: white;
@@ -104,7 +102,7 @@ body {
   color: white;
 }
 
-/* ✅ Form Styling */
+/* Form Styling */
 .edit-form {
   background: #f8f9fa;
   padding: 15px;
@@ -122,7 +120,7 @@ input, textarea {
   border-radius: 5px;
 }
 
-/* ✅ Update Button (Green) */
+/* Update Button (Green) */
 .update-btn {
   background: #28a745;
   color: white;
@@ -138,7 +136,7 @@ input, textarea {
   background: #218838;
 }
 
-/* ✅ Cancel Button (Red) */
+/* Cancel Button (Red) */
 .cancel-btn {
   background: #dc3545;
   color: white;
@@ -150,11 +148,11 @@ input, textarea {
 }
 
 .cancel-btn:hover {
-  background: #b52a37; /* Darker Red */
+  background: #b52a37; 
 }
 
 
-/* ✅ Next Status Button */
+/* Next Status Button */
 .next-status-btn {
   background: #28a745;
   color: white;
@@ -172,7 +170,7 @@ input, textarea {
   background: #218838;
 }
 
-/* ✅ Undo Status Button */
+/* Undo Status Button */
 .undo-status-btn {
   background: #ffc107;
   color: white;
@@ -190,7 +188,7 @@ input, textarea {
   background: #e0a800;
 }
 
-/* ✅ New Task Form Styling */
+/* New Task Form Styling */
 .todo-form-container {
   background: white;
   padding: 20px;
@@ -245,7 +243,7 @@ input, textarea {
   resize: vertical;
 }
 
-/* ✅ Style for Menu Button (Ellipsis Icon) */
+/* Style for Menu Button (Ellipsis Icon) */
 .menu-btn {
   background: none;
   border: none;
@@ -261,7 +259,7 @@ input, textarea {
   color: #007bff;
 }
 
-/* ✅ Dropdown Menu */
+/* Dropdown Menu */
 .menu-options {
   position: absolute;
   top: 30px;
@@ -275,7 +273,7 @@ input, textarea {
   gap: 5px;
 }
 
-/* ✅ Add Task Button Styling */
+/* Add Task Button Styling */
 .add-btn {
   background: #28a745;
   color: white;
@@ -294,13 +292,13 @@ input, textarea {
   text-align: center;
 }
 
-/* ✅ Hover effect */
+/* Hover effect */
 .add-btn:hover {
   background: #218838;
   transform: scale(1.05);
 }
 
-/* ✅ Active button effect */
+/*  Active button effect */
 .add-btn:active {
   transform: scale(0.95);
 }

@@ -8,8 +8,8 @@ const TodoList = ({ todos, updateTask, deleteTask }) => {
   const handleUpdateTask = async () => {
     if (editTodo) {
       try {
-        await updateTask(editTodo); // ✅ Ensure updateTask is awaited
-        setEditTodo(null); // ✅ Close form after update
+        await updateTask(editTodo); 
+        setEditTodo(null); 
       } catch (error) {
         console.error("Error updating task:", error);
       }
@@ -25,7 +25,6 @@ const TodoList = ({ todos, updateTask, deleteTask }) => {
     deleteTask(id);
     setMenuOpen(null)
   }
-  // ✅ Ensure these functions return the correct status
   const getNextStatus = (currentStatus) => {
     if (currentStatus === "To Start") return "In Progress";
     if (currentStatus === "In Progress") return "Completed";
@@ -61,9 +60,7 @@ const TodoList = ({ todos, updateTask, deleteTask }) => {
             )}
           </div>
           <p>{todo.note}</p>
-          <p>Due: {formatDueDate(todo.dueDate)}</p> {/* ✅ Ensure formatDueDate() is called */}
-
-          {/* ✅ Ensure status change buttons are shown when needed */}
+          <p>Due: {formatDueDate(todo.dueDate)}</p>
           {getNextStatus(todo.status) && (
             <button
               className="next-status-btn"

@@ -1,4 +1,4 @@
-# ✅ Ignore logs
+# Ignore logs
 logs/
 *.log
 npm-debug.log*
@@ -9,16 +9,16 @@ lerna-debug.log*
 
 
 
-# ✅ Ignore build files
+# Ignore build files
 dist/
 dist-ssr/
 build/
 
-# ✅ Ignore Docker related files
+# Ignore Docker related files
 docker-compose.override.yml
 .dockerignore
 
-# ✅ Ignore system & editor files
+# Ignore system & editor files
 .vscode/
 !.vscode/extensions.json
 .idea/

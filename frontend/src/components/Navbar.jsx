@@ -1,11 +1,11 @@
-import React from "react";
+// import React from "react";
 
-const Navbar = () => {
-  return (
-    <nav className="navbar">
-      <h1>Todo List Application</h1>
-    </nav>
-  );
-};
+// const Navbar = () => {
+//   return (
+//     <nav className="navbar">
+//       <h1>Todo List Application</h1>
+//     </nav>
+//   );
+// };
 
-export default Navbar;
+// export default Navbar;

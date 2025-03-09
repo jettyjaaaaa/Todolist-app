@@ -2,20 +2,19 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-require("dotenv").config(); // Load environment variables
+require("dotenv").config();
 
-const Todo = require("./models/Todo"); // Import Todo model
+const Todo = require("./models/Todo");
 
 const app = express();
 
 app.use(cors({ 
-  origin: "https://jettyjaaaaa.space", // Allow requests from your domain
+  origin: "https://jettyjaaaaa.space",
   methods: "GET,POST,PUT,DELETE,OPTIONS",
   allowedHeaders: "Content-Type,Authorization"
 }));
 app.use(bodyParser.json());
 
-// MongoDB Connection
 const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/todo";
 mongoose
   .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -44,7 +43,7 @@ app.get("/todos/overdue", async (req, res) => {
 
 app.post("/todos", async (req, res) => {
     try {
-      console.log("Request Body:", req.body); // ตรวจสอบ JSON Body ที่ส่งมา
+      console.log("Request Body:", req.body); 
       const newTodo = new Todo(req.body);
       await newTodo.save();
       res.status(201).json(newTodo);
@@ -71,7 +70,7 @@ app.put("/todos/:id", async (req, res) => {
 
     const updatedTodo = await Todo.findByIdAndUpdate(
       req.params.id,
-      { task, dueDate, note, status }, // ✅ Ensure status is updated
+      { task, dueDate, note, status }, 
       { new: true }
     );
 
@@ -95,6 +94,5 @@ app.delete("/todos/:id", async (req, res) => {
 });
 
 
-// Start Server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

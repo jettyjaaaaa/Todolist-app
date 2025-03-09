@@ -4,8 +4,7 @@ const TodoForm = ({ addTask }) => {
   const [task, setTask] = useState("");
   const [note, setNote] = useState("");
   const [dueDate, setDueDate] = useState("");
-  // const [status, setStatus] = useState("To Start");
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!task || !dueDate) return;
@@ -14,7 +13,6 @@ const TodoForm = ({ addTask }) => {
     setTask("");
     setNote("");
     setDueDate("");
-    // setStatus("To Start");
   };
 
   return (

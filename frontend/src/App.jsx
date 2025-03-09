@@ -34,7 +34,6 @@ const App = () => {
     }
   };
 
-  // ✅ Ensure updateTask() is correctly defined and used
   const updateTask = async (updatedTask) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/todos/${updatedTask._id}`, {
@@ -56,8 +55,6 @@ const App = () => {
     }
   };
   
-
-  // ✅ Ensure deleteTask() is correctly defined and used
   const deleteTask = async (id) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/todos/${id}`, {
@@ -86,10 +83,9 @@ const App = () => {
             <div className="task-navbar">
               <h2>{status}</h2>
             </div>
-            {/* ✅ Ensure updateTask and deleteTask are passed to TodoList */}
             <TodoList
               todos={todos.filter((todo) => todo.status === status)}
-              updateTask={updateTask} // ✅ Ensure updateTask is passed correctly
+              updateTask={updateTask} 
               deleteTask={deleteTask}
             />
           </div>
