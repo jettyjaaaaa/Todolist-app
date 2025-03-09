@@ -9,7 +9,7 @@ const Todo = require("./models/Todo");
 const app = express();
 
 app.use(cors({ 
-  origin: "https://jettyjaaaaa.space",
+  origin: "https://todolist.jettyjaaaaa.space",
   methods: "GET,POST,PUT,DELETE,OPTIONS",
   allowedHeaders: "Content-Type,Authorization"
 }));

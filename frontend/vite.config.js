@@ -14,7 +14,7 @@ export default defineConfig({
     strictPort: true,
     proxy: {
       "/api": {
-        target: "https://jettyjaaaaa.space",
+        target: "https://todolist.jettyjaaaaa.space",
         changeOrigin: true,
         secure: true,
       }
