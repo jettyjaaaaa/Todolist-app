@@ -1,23 +1,18 @@
-stages:
-  - deploy
-
 deploy:
   stage: deploy
   script:
     - echo "Deploying to VM..."
     - mkdir -p ~/.ssh
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-    - chmod 600 ~/.ssh/id_rsa
-    - ssh-keyscan 34.72.155.6 >> ~/.ssh/known_hosts
-    - |
-      ssh -o StrictHostKeyChecking=no wishjet49@34.72.155.6 '
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+    - chmod 600 ~/.ssh/id_ed25519
+    - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 wishjet49@34.57.1.13 << EOF
         cd ~/todolist-app
         git pull origin main
         sudo docker-compose down
-        sudo docker system prune -af  
-        sudo docker volume prune -f 
+        sudo docker system prune -af
+        sudo docker volume prune -f
         sudo docker-compose up --build -d
         sudo systemctl restart nginx
-      '
+      EOF
   only:
     - main
