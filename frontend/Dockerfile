@@ -23,7 +23,9 @@ RUN apk add --no-cache python3 py3-pip
 
 # Step 8: Copy build file to /app
 COPY --from=build /app/dist /app
-
+RUN apk add --no-cache nginx && \
+    echo "Types { application/javascript js; text/css css; }" > /etc/nginx/mime.types
+    
 # Step 9: Use python SimpleHTTPServer 
 CMD ["python3", "-m", "http.server", "8080"]
 EXPOSE 8080
