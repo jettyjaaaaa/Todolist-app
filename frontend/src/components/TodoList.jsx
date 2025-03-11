@@ -23,8 +23,9 @@ const TodoList = ({ todos, updateTask, deleteTask }) => {
 
   const handleDeleteClick = (id) => {
     deleteTask(id);
-    setMenuOpen(null)
-  }
+    setMenuOpen(null);
+  };
+  
   const getNextStatus = (currentStatus) => {
     if (currentStatus === "To Start") return "In Progress";
     if (currentStatus === "In Progress") return "Completed";

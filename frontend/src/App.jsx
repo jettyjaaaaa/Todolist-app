@@ -34,6 +34,31 @@ const App = () => {
     }
   };
 
+  const updateTask = async (updatedTask) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/todos/${updatedTask._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedTask),
+      });
+      const data = await response.json();
+      setTodos(todos.map(todo => todo._id === data._id ? data : todo));
+    } catch (err) {
+      console.error("Error updating task:", err);
+    }
+  };
+
+  const deleteTask = async (id) => {
+    try {
+      await fetch(`${import.meta.env.VITE_API_URL}/todos/${id}`, {
+        method: "DELETE",
+      });
+      setTodos(todos.filter(todo => todo._id !== id));
+    } catch (err) {
+      console.error("Error deleting task:", err);
+    }
+  };
+
   return (
     <div className="App">
       <h1>Todo-List</h1>
@@ -52,8 +77,8 @@ const App = () => {
             </div>
             <TodoList
               todos={todos.filter((todo) => todo.status === status)}
-              updateTask={addTask} 
-              deleteTask={addTask}
+              updateTask={updateTask}
+              deleteTask={deleteTask}
             />
           </div>
         ))}
