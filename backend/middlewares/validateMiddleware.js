@@ -9,7 +9,7 @@ const validateTodo = (req, res, next) => {
       return res.status(400).json({ error: "Valid dueDate is required" });
     }
   
-    next(); // Continue to the next middleware or route
+    next();
   };
   
   module.exports = validateTodo;

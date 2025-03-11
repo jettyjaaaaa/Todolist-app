@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
+import "./assets/modal.css";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
-  const [showForm, setShowForm] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -28,55 +29,22 @@ const App = () => {
       });
       const data = await response.json();
       setTodos([...todos, data]);
-      setShowForm(false);
+      setShowModal(false); 
     } catch (err) {
       console.error("Error adding task:", err);
-    }
-  };
-
-  const updateTask = async (updatedTask) => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/todos/${updatedTask._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedTask),
-      });
-  
-      if (!response.ok) throw new Error("Failed to update task");
-  
-      const data = await response.json();
-  
-      setTodos((prevTodos) =>
-        prevTodos.map((todo) => (todo._id === updatedTask._id ? data : todo))
-      );
-  
-    } catch (err) {
-      console.error("Error updating task:", err);
-    }
-  };
-  
-  const deleteTask = async (id) => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/todos/${id}`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) throw new Error("Failed to delete task");
-
-      setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
-    } catch (err) {
-      console.error("Error deleting task:", err);
     }
   };
 
   return (
     <div className="App">
       <h1>Todo-List</h1>
-      <button className="new-task-btn" onClick={() => setShowForm(!showForm)}>
+      <button className="new-task-btn" onClick={() => setShowModal(true)}>
         + New Task
       </button>
-      {showForm && <TodoForm addTask={addTask} />}
 
+      {/* Show Modal if state is true */}
+      {showModal && <TodoForm addTask={addTask} closeModal={() => setShowModal(false)} />}
+      
       <div className="task-columns">
         {["To Start", "In Progress", "Completed"].map((status) => (
           <div key={status} className="task-column">
@@ -85,8 +53,8 @@ const App = () => {
             </div>
             <TodoList
               todos={todos.filter((todo) => todo.status === status)}
-              updateTask={updateTask} 
-              deleteTask={deleteTask}
+              updateTask={addTask} 
+              deleteTask={addTask}
             />
           </div>
         ))}

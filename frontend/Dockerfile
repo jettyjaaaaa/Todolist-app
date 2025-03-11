@@ -1,23 +1,29 @@
-# ใช้ Node.js สำหรับ Build React
+# Step 1: Use Node.js as the base image
 FROM node:18 AS build
+
+# Step 2: Set the working directory
 WORKDIR /app
 
-# คัดลอกไฟล์และติดตั้ง dependencies
+# Step 3: Copy package.json and package-lock.json
 COPY package*.json ./
+
+# Step 4: Install dependencies
 RUN npm install
 
-# คัดลอก source code ทั้งหมด และ build frontend
+# Step 5: Copy the rest the application
 COPY . .
+
+# Step 6: Build frontend application
 RUN npm run build
 
-# ใช้ Alpine เพื่อลดขนาดของ container
+# Step 7: Use Alpine to reduce container size
 FROM alpine:latest
 WORKDIR /app
 RUN apk add --no-cache python3 py3-pip
 
-# คัดลอกไฟล์ที่ build เสร็จมาไว้ที่ /app
+# Step 8: Copy build file to /app
 COPY --from=build /app/dist /app
 
-# ใช้ Python SimpleHTTPServer แทน Nginx
+# Step 9: Use python SimpleHTTPServer 
 CMD ["python3", "-m", "http.server", "8080"]
 EXPOSE 8080
