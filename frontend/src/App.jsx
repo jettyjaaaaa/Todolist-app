@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
-import "./assets/modal.css";
 
 const App = () => {
   const [todos, setTodos] = useState([]);

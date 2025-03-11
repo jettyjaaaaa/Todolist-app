@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../assets/modal.css"; 
+import "../assets/styles.css"; 
 
 const TodoForm = ({ addTask, closeModal }) => {
   const [task, setTask] = useState("");
