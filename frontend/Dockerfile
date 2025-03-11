@@ -22,7 +22,7 @@ WORKDIR /app
 RUN apk add --no-cache python3 py3-pip
 
 # Step 8: Copy build file to /app
-COPY --from=build /app/dist /app
+COPY --from=build /app/dist .
 
 # Step 9: Use python SimpleHTTPServer 
 CMD ["python3", "-m", "http.server", "8080"]
