@@ -1,31 +1,27 @@
-# Step 1: Use Node.js as the base image
+# Step 1: ใช้ Node.js สำหรับ Build
 FROM node:18 AS build
-
-# Step 2: Set the working directory
 WORKDIR /app
 
-# Step 3: Copy package.json and package-lock.json
+# Step 2: Copy package.json และติดตั้ง dependencies
 COPY package*.json ./
-
-# Step 4: Install dependencies
 RUN npm install
 
-# Step 5: Copy the rest the application
+# Step 3: คัดลอกโค้ดทั้งหมด และ Build Frontend
 COPY . .
-
-# Step 6: Build frontend application
 RUN npm run build
 
-# Step 7: Use Alpine to reduce container size
-FROM alpine:latest
-WORKDIR /app
-RUN apk add --no-cache python3 py3-pip
+# Step 4: ใช้ Nginx เป็น Web Server
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
 
-# Step 8: Copy build file to /app
-COPY --from=build /app/dist /app
-RUN apk add --no-cache nginx && \
-    echo "Types { application/javascript js; text/css css; }" > /etc/nginx/mime.types
-    
-# Step 9: Use python SimpleHTTPServer 
-CMD ["python3", "-m", "http.server", "8080"]
-EXPOSE 8080
+# Step 5: คัดลอกไฟล์ build ไปยัง Nginx
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Step 6: คัดลอก Nginx config ไปยัง container (ไม่จำเป็นถ้าใช้ `todolist` บน VM)
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Step 7: เปิดพอร์ต 80
+EXPOSE 80
+
+# Step 8: Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
