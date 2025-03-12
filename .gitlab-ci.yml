@@ -1,5 +1,7 @@
 deploy:
   stage: deploy
+  tags:
+    - gcp  # ต้องตรงกับ Tags ของ Runner
   script:
     - echo "🚀 Deploying on GCP VM..."
     - cd ~/todolist-app
