@@ -1,10 +1,8 @@
 deploy:
   stage: deploy
-  tags:
-    - gcp  # ต้องตรงกับ Tags ของ Runner
   script:
     - echo "🚀 Deploying on GCP VM..."
-    - cd ~/todolist-app
+    - cd /home/wishjet49/todolist-app  
     - git pull origin main
     - sudo docker-compose down
     - sudo docker-compose up --build -d
