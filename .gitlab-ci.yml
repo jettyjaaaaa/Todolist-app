@@ -1,11 +1,11 @@
 deploy:
   stage: deploy
   script:
-    - echo "Deploying to VM..."
-    - mkdir -p ~/.ssh
-    - echo -e "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
-    - chmod 600 ~/.ssh/id_ed25519
-    - ssh -o StrictHostKeyChecking=no -t -i ~/.ssh/id_ed25519 wishjet49@34.57.1.13 "bash -c 'cd ~/todolist-app && git pull origin main && sudo docker-compose down && sudo docker-compose up --build -d && sudo systemctl restart nginx'"
-
+    - echo "🚀 Deploying on GCP VM..."
+    - cd ~/todolist-app
+    - git pull origin main
+    - sudo docker-compose down
+    - sudo docker-compose up --build -d
+    - sudo systemctl restart nginx
   only:
     - main
