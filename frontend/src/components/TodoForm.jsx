@@ -7,7 +7,7 @@ const TodoForm = ({ addTask, closeModal }) => {
   const [dueDate, setDueDate] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //protect reload from web
     if (!task || !dueDate) return;
     const newTask = { task, note, dueDate, status: "To Start" };
     addTask(newTask);
@@ -28,8 +28,8 @@ const TodoForm = ({ addTask, closeModal }) => {
             <input
               type="text"
               placeholder="Enter task..."
-              value={task}
-              onChange={(e) => setTask(e.target.value)}
+              value={task} //keep in useState
+              onChange={(e) => setTask(e.target.value)} //when typing setTask
               required
             />
           </div>
@@ -48,7 +48,7 @@ const TodoForm = ({ addTask, closeModal }) => {
             <input
               type="date"
               value={dueDate}
-              min={new Date().toISOString().split("T")[0]}
+              min={new Date().toISOString().split("T")[0]} //protect to choose day before
               onChange={(e) => setDueDate(e.target.value)}
               required
             />

@@ -1,7 +1,7 @@
-image: docker:latest  # ใช้ Docker ใน Runner
+image: docker:latest 
 
 services:
-  - docker:dind  # ใช้ Docker-in-Docker เพื่อรันคอนเทนเนอร์ใน Runner
+  - docker:dind 
 
 stages:
   - deploy
@@ -13,7 +13,7 @@ variables:
 deploy:
   stage: deploy
   script:
-    - echo "🚀 Deploying on GCP VM..."
+    - echo "Deploying on GCP VM..."
     - docker login -u $DOCKER_USER -p $DOCKER_PASS
     - docker pull my-docker-image:latest 
     - docker-compose down  

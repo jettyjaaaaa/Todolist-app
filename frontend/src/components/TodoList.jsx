@@ -4,6 +4,8 @@ import { FaEllipsisV } from "react-icons/fa";
 const TodoList = ({ todos, updateTask, deleteTask }) => {
   const [editTodo, setEditTodo] = useState(null);
   const [menuOpen, setMenuOpen] = useState(null);
+  //editTodo -> keep data when edit
+  //menuOpen -> keep Task ID when open
 
   const handleUpdateTask = async () => {
     if (editTodo) {
@@ -15,16 +17,22 @@ const TodoList = ({ todos, updateTask, deleteTask }) => {
       }
     }
   };
+  //call updateTask(editTodo) -> Sent value to update
+  //set editTodo to null for close edit form
 
   const handleEditClick = (todo) => {
     setEditTodo(todo);
     setMenuOpen(null);
   };
+  //set Task u want to do editTodo
+  //close menu setMenuOpen(null)
 
   const handleDeleteClick = (id) => {
     deleteTask(id);
     setMenuOpen(null);
   };
+  //cal deleteTask(id) for delete task
+  //close menu setMenuOpen(null)
   
   const getNextStatus = (currentStatus) => {
     if (currentStatus === "To Start") return "In Progress";
@@ -42,11 +50,13 @@ const TodoList = ({ todos, updateTask, deleteTask }) => {
     const date = new Date(dueDate);
     return `${date.getDate().toString().padStart(2, "0")}/${(date.getMonth() + 1).toString().padStart(2, "0")}/${date.getFullYear()}`;
   };
+  //change dueDate to dd/mm/yyyy
 
   return (
     <div className="task-list">
       {todos.length === 0 && <p>No tasks available</p>}
       {todos.map((todo) => (
+      //Map to call list
         <div key={todo._id} className="task-card">
           <div className="task-header">
             <strong>{todo.task}</strong>
